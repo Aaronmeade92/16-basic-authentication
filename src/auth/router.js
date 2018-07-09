@@ -2,12 +2,9 @@
 
 import express from 'express';
 const authRouter = express.Router();
-
 import User from './model.js';
 import auth from './middleware.js';
 
-// Generally, these will send a Token Cookie and do a redirect.
-// For now, just spew out the token to prove we're ok.
 
 authRouter.post('/signup', (req, res, next) => {
   let user = new User(req.body);
@@ -16,7 +13,7 @@ authRouter.post('/signup', (req, res, next) => {
     .catch(next);
 });
 
-authRouter.get('/signin',auth, (req, res, next) => {
+authRouter.get('/signin',auth, (req, res) => {
   res.cookie('Token', req.token);
   res.send('Hi');
 });
