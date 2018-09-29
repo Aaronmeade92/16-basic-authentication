@@ -2,7 +2,7 @@
 
 import express from 'express';
 const authRouter = express.Router();
-import User from './model.js';
+import User from './users.js';
 import auth from './middleware.js';
 
 
@@ -14,6 +14,7 @@ authRouter.post('/signup', (req, res, next) => {
 });
 
 authRouter.get('/signin',auth, (req, res) => {
+  console.log('what is this');
   res.cookie('Token', req.token);
   res.send('Hi');
 });
